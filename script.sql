@@ -1,13 +1,14 @@
+-- Active: 1718817905308@@ep-summer-cell-a4x33rxj-pooler.us-east-1.aws.neon.tech@5432@postgres
 -- Creación de tablas
 
-CREATE TABLE IF NOT EXISTS Usuarios (
+CREATE TABLE IF NOT EXISTS coworking.Usuarios (
     UsuarioID SERIAL PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Telefono VARCHAR(15)
 );
 
-CREATE TABLE IF NOT EXISTS Salas (
+CREATE TABLE IF NOT EXISTS coworking.Salas (
     SalaID SERIAL PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
     Ubicacion VARCHAR(100),
@@ -15,20 +16,20 @@ CREATE TABLE IF NOT EXISTS Salas (
     Columnas INT
 );
 
-CREATE TABLE IF NOT EXISTS Espacios_de_Trabajo (
+CREATE TABLE IF NOT EXISTS coworking.Espacios_de_Trabajo (
     EspacioID SERIAL PRIMARY KEY,
     SalaID INT REFERENCES Salas (SalaID),
     Fila INT,
     Columna INT
 );
 
-CREATE TABLE IF NOT EXISTS Sesiones (
+CREATE TABLE IF NOT EXISTS coworking.Sesiones (
     SesionID SERIAL PRIMARY KEY,
     FechaInicio TIMESTAMP,
     FechaFin TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS Reservas (
+CREATE TABLE IF NOT EXISTS coworking.Reservas (
     ReservaID SERIAL PRIMARY KEY,
     EspacioID INT REFERENCES Espacios_de_Trabajo (EspacioID),
     SesionID INT REFERENCES Sesiones (SesionID),
